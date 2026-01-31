@@ -1,0 +1,20 @@
+var x = 50; 
+var order = 'Beer';
+
+if (x > 70) {
+    document.write("<h2>Vanhin ikäryhmä – yli 70-vuotias</h2>");
+    console.log("Vanhin ikäryhmä – yli 70-vuotias");
+} else if (x > 50) {
+    document.write("<h2>Hän on yli 50-vuotias!</h2>");
+    console.log("Hän on yli 50-vuotias!");
+} else if (x > 30) {
+    document.write("<h2>Keskikäinen henkilö, joka tilasi: " + order + "</h2>");
+    console.log("Keskikäinen henkilö, joka tilasi: " + order);
+} else if (x >= 18) {
+    document.write("<h2>Aikuinen, mutta nuorempi ikäryhmä</h2>");
+    console.log("Aikuinen, mutta nuorempi ikäryhmä");
+} else {
+    document.write("<h2>Lapsi – Ei olutta hänelle.</h2>");
+    console.log("Lapsi – ehdottomasti alaikäinen.");
+}
+
