@@ -1,1 +1,273 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <title>Työpaja 3</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        //Tehtävä 1, jossa Ensimmäisen painikkeen tulee avata alert‑ikkuna: “Klikkasit minua!”.
+        //Toisen painikkeen tulee kutsua kirjoittamaasi funktiota nimeltä showTable(), joka tulostaa HTML‑taulukon sivulle.
+        //Rakenna taulukko template stringin avulla (backtick‑merkeillä `). Tee sarakkeiden sisältö muuttujista, esim. ${nimi} ja ${tehtava}.
+        //Kun taulukko toimii, etsi sijoituspaikka document.querySelector()‑funktiolla ja lisää se elementtiin, jonka id on taulukonPaikka
+        function showTable() {
+            const nimi1 = "Tiger Nixon";
+            const tehtava1 = "System Architect";
+            const palkka1 = "$320,800";
+
+            const nimi2 = "Garret Winters";
+            const tehtava2 = "Accountant";
+            const palkka2 = "$170,750";
+
+            const tableHTML = `
+                <table border="1">
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Tehtävä</th>
+                        <th>Palkka</th>
+                    </tr>
+                    <tr>
+                        <td>${nimi1}</td>
+                        <td>${tehtava1}</td>
+                        <td>${palkka1}</td>
+                    </tr>
+                    <tr>
+                        <td>${nimi2}</td>
+                        <td>${tehtava2}</td>
+                        <td>${palkka2}</td>
+                    </tr>
+                </table>
+            `;
+            document.querySelector("#taulukonPaikka").innerHTML = tableHTML;
+        }
+
+     </script>
+</head>
+
+<body class="ws3">
+    <h1>Työpaja 3: JavaScript-tapahtumat</h1>
+    <hr>
+    <p>
+        Tässä harjoituksessa harjoittelemme JavaScript‑tapahtumien käyttöä.
+        Käytä luentomateriaalia apuna ja tallenna tekemäsi koodit myöhempää käyttöä varten.
+    </p>
+    <hr>
+
+    <!-- Harjoitus 1 -->
+    <h2>Harjoitus 1</h2>
+    <script> //Harjoitus 2, jossa otsikko ja sen väri vaihtuu
+        const harjoitus1 = document.querySelector("h2:nth-of-type(1)"); //Hakee Harjoitus 1 otsikon jos useita h2 vaihtoehtoja
+        harjoitus1.addEventListener("click", function() {
+            harjoitus1.style.color = "red";
+            harjoitus1.innerHTML = "Bye bye mouse!";
+        });
+            
+    </script>
+    <p>Alla näet kaksi painiketta. Lisää näihin onClick‑tapahtumat.</p>
+
+    <p>
+        <button onclick="alert('Klikkasit minua!')">Napsauta minua</button>
+        <button onclick="showTable()">Näytä taulukko</button>
+    </p>
+
+    <div id="taulukonPaikka"></div>
+
+    <ol>
+        <li>Ensimmäisen painikkeen tulee avata alert‑ikkuna: “Klikkasit minua!”.</li>
+        <li>Toisen painikkeen tulee kutsua kirjoittamaasi funktiota nimeltä <code>showTable()</code>, joka tulostaa HTML‑taulukon sivulle.</li>
+        <li>Rakenna taulukko template stringin avulla (backtick‑merkeillä <code>`</code>).</li>
+        <li>Tee sarakkeiden sisältö muuttujista, esim. <code>${nimi}</code> ja <code>${tehtava}</code>.</li>
+        <li>Kun taulukko toimii, etsi sijoituspaikka <code>document.querySelector()</code>‑funktiolla ja lisää se elementtiin, jonka id on <code>taulukonPaikka</code>.</li>
+    </ol>
+
+    <table id="example" class="display" border="1">
+        <thead>
+            <tr>
+                <th>Nimi</th>
+                <th>Tehtävä</th>
+                <th>Palkka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>$170,750</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Harjoitus 2 -->
+    <h2>Harjoitus 2</h2>
+    <ul>
+        <li>Lisää <code>mouseover</code>-tapahtuma otsikkoon “Harjoitus 2”. Tulosta konsoliin: <em>“Stepped over me with a mouse!”</em></li>
+        <li>Lisää <code>click</code>-tapahtuma “Harjoitus 1” ‑otsikkoon dynaamisesti <code>addEventListener()</code>-metodilla. Otsikon värin tulee muuttua punaiseksi ja sisällöksi “Bye bye mouse!”.</li>
+    </ul>
+    <p>Vinkki: käytä <code>document.querySelector()</code>‑funktiota ja muuta sisältöä <code>innerHTML</code>‑kentällä.</p>
+    <script>
+            // Tehtävä 2. Mouseover Harjoitus 2 -otsikkoon
+     const harjoitus2 = document.querySelector("h2:nth-of-type(2)"); //valitsee useista mahdollisista h2 otsikoista Harjoitus 2.
+     harjoitus2.addEventListener("mouseover", function() { 
+        console.log("Stepped over me with a mouse!");
+     });
+    </script>
+    <hr>
+
+    <!-- Harjoitus 3 -->
+    <h2>Harjoitus 3</h2>
+    <p>
+        Rakenna yksinkertainen “pikapalaute”‑lomake, jossa harjoittelet DOM‑käsittelyä ja
+        useita eri tapahtumankuuntelijoita.
+    </p>
+    <ul>
+        <li>Lisää <strong>focus</strong>-tapahtuma <code>textarea</code>-elementtiin, joka näyttää viestin <code>#status</code>-elementissä ja muuttaa halutessasi taustaväriä.</li>
+        <li>Lisää <strong>blur</strong>-tapahtuma, joka tyhjentää viestin ja palauttaa tyylit.</li>
+        <li>Lisää <strong>input</strong>-kuuntelija:
+            <ul>
+                <li>päivitä merkkimäärä <code>#charcount</code>-elementtiin (muotoa X/200)</li>
+                <li>näytä punaisena, jos merkkiraja ylittyy</li>
+                <li>päivitä esikatselu <code>#preview</code>-elementtiin</li>
+                <li>deaktivoi nappi, jos merkkimäärä on < 10 tai > 200</li>
+            </ul>
+        </li>
+        <li>Lisää <strong>keydown</strong>, joka lähettää lomakkeen <em>Ctrl/Cmd + Enter</em> -näppäinyhdistelmällä.</li>
+        <li>Lisää <strong>submit</strong>-tapahtuma:
+            <ul>
+                <li>käytä <code>event.preventDefault()</code></li>
+                <li>tarkista pituus 10–200 merkkiä</li>
+                <li>näytä virheet <code>#status</code>-elementissä</li>
+                <li>onnistuneessa lähetyksessä tyhjennä kenttä ja näytä “Kiitos palautteesta!”</li>
+            </ul>
+        </li>
+        <li><strong>Bonus:</strong>
+            <ul>
+                <li>edistymispalkki</li>
+                <li>kopioi esikatselu napista</li>
+                <li>tallenna palaute <code>localStorage</code>en</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Pikapalaute-lomake</h3>
+
+    <form id="feedbackForm" novalidate>
+        <label for="feedback">Palaute (min 10 merkkiä, max 200):</label><br>
+        <textarea id="feedback" placeholder="Kirjoita palaute..." rows="5"></textarea><br>
+
+        <div style="margin: 4px 0;">
+            <span id="charcount">0/200</span>
+            <span id="status" aria-live="polite" style="margin-left: 8px; color: #666;"></span>
+        </div>
+
+        <button id="sendBtn" type="submit" disabled>Lähetä</button>
+    </form>
+
+    <h3>Esikatselu</h3>
+    <div id="preview" style="border: 1px solid #ccc; padding: 8px; min-height: 40px; background: #fafafa;">
+        (Esikatselu tulee tähän)
+    </div>
+
+    <hr>
+
+    <!-- Harjoitus 4 -->
+    <h2>Harjoitus 4</h2>
+
+    <h3>1. Google Maps ja koordinaatit</h3>
+    <p>
+        Google Mapsin voi avata suoraan tiettyyn sijaintiin antamalla koordinaatit URL‑osoitteessa:
+    </p>
+    <code>https://www.google.com/maps?q=60.1699,24.9384</code>
+
+    <hr>
+
+    <h3>2. Käyttäjän sijainnin selvittäminen (Geolocation API)</h3>
+    <p>
+        Sijainti voidaan hakea JavaScriptin <strong>Geolocation API</strong>n avulla.
+    </p>
+
+    <pre>
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    console.log("Latitude:", position.coords.latitude);
+    console.log("Longitude:", position.coords.longitude);
+  },
+  (error) => {
+    console.log("Sijaintia ei voitu hakea:", error.message);
+  }
+);
+    </pre>
+
+    <p>Kun koordinaatit on saatu, voit ohjata käyttäjän Google Mapsiin:</p>
+
+    <pre>
+const url = `https://www.google.com/maps?q=${lat},${lon}`;
+window.location.href = url;
+    </pre>
+
+    <p><em>Huom: sijainnin hakeminen toimii yleensä vain HTTPS-sivuilla.</em></p>
+
+    <hr>
+
+    <!-- Harjoitus 5 -->
+    <h2>Harjoitus 5</h2>
+
+    <h3>Näppäinpainalluksen tunnistaminen</h3>
+
+    <p>
+        Tee ohjelma, joka näyttää viimeksi painetun näppäimen ja näppäimen koodin.
+    </p>
+
+    <div id="keybox" style="padding: 20px; border: 1px solid #ccc; font-size: 1.2em;">
+        Paina mitä tahansa näppäintä...
+    </div>
+
+    <p id="keyinfo"></p>
+
+    <ul>
+        <li>Lisää <code>keydown</code>-kuuntelija dokumentille.</li>
+        <li>Tulosta tapahtuma ensiksi konsoliin.</li>
+        <li>Näytä:
+            <ul>
+                <li>painettu näppäin (<code>event.key</code>)</li>
+                <li>näppäinkoodi (<code>event.code</code>)</li>
+            </ul>
+            elementissä <code>#keyinfo</code>.
+        </li>
+        <li>
+            Muuta <code>#keybox</code>-elementin sisältö siten, että se näyttää painetun näppäimen isolla fontilla.
+        </li>
+    </ul>
+    <script> //Harjoitus 5
+    const keyinfo = document.querySelector("#keyinfo"); 
+    const keybox = document.querySelector("#keybox"); 
+    document.addEventListener("keydown", (event) => { //keydown kuuntelija
+        console.log(event); //Konsoliin kirjaus
+        const pressedKey = event.key; //painettu näppäin
+        const keyCode = event.code;  //näppäinkoodi
+        keyinfo.innerHTML = ` 
+            <strong>Painettu näppäin:</strong> ${pressedKey} 
+            <strong>Koodi:</strong> ${keyCode} 
+            `; 
+        keybox.textContent = pressedKey; 
+        keybox.style.fontSize = "48px"; 
+        keybox.style.fontWeight = "bold"; 
+        keybox.style.textAlign = "center"; 
+        }); 
+        </script>
+
+    <h4>Bonus-tehtävä</h4>
+    <ul>
+        <li>Vaihda taustaväri eri näppäinten mukaan.</li>
+        <li>Lisää laskuri, joka kertoo näppäinpainallusten määrän.</li>
+        <li>Näytä jos Shift, Ctrl tai Alt on painettuna.</li>
+    </ul>
+
+</body>
+</html>
 
